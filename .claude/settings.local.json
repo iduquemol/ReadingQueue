@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(New-Item -ItemType Directory -Path \"C:\\\\Estudio\\\\Library\\\\src\\\\ReadingQueue.Infrastructure\\\\Data\" -Force)",
+      "PowerShell(New-Item -ItemType Directory -Path \"C:\\\\Estudio\\\\Library\\\\tests\\\\ReadingQueue.Infrastructure.Tests\\\\Migrations\" -Force)",
+      "PowerShell(New-Item -ItemType Directory -Path \"C:\\\\Estudio\\\\Library\\\\src\\\\ReadingQueue.Infrastructure\\\\Migrations\\\\Scripts\" -Force)",
+      "PowerShell(docker version 2>&1)",
+      "PowerShell(docker run --rm hello-world 2>&1)",
+      "PowerShell($env:DOCKER_HOST)",
+      "PowerShell($env:TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE)",
+      "PowerShell(docker run --rm readingqueue-api:test dotnet --list-sdks 2>&1)",
+      "PowerShell(docker run --rm readingqueue-api:test sh -c \"which dotnet && dotnet --list-sdks\" 2>&1; Write-Output \"exit: $LASTEXITCODE\")",
+      "PowerShell(docker image inspect readingqueue-api:test --format \"{{.Config.Entrypoint}}\" 2>&1)"
+    ]
+  }
+}

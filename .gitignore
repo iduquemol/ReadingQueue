@@ -1,0 +1,36 @@
+# Secrets - NEVER commit
+.env
+*.env
+*.env.local
+*.env.*.local
+
+# .NET
+bin/
+obj/
+*.user
+*.suo
+.vs/
+TestResults/
+*.nupkg
+*.snupkg
+*.log
+
+# Node / Frontend
+node_modules/
+dist/
+.vite/
+frontend/.vite/
+*.tsbuildinfo
+
+# Rider / JetBrains
+.idea/
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+*.override.yml
