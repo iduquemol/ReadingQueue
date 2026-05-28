@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { BookForm } from '@/components/library/BookForm'
+import { createWrapper } from '@/__tests__/helpers/queryWrapper'
 
 const GENRES    = ['Clasico', 'Novela contemporánea']
 const ENERGIES  = ['Alta', 'Media', 'Baja']
@@ -17,6 +18,7 @@ function renderForm(onSubmit = vi.fn()) {
       moods={MOODS}
       rotationCategories={ROTATIONS}
     />,
+    { wrapper: createWrapper() },
   )
   return { onSubmit }
 }
@@ -27,6 +29,7 @@ describe('BookForm — estructura', () => {
     expect(screen.getByLabelText(/título/i)).toBeInTheDocument()
     expect(screen.getByLabelText(/autor/i)).toBeInTheDocument()
     expect(screen.getByLabelText(/género/i)).toBeInTheDocument()
+    expect(screen.getByLabelText(/subgénero/i)).toBeInTheDocument()
     expect(screen.getByLabelText(/país/i)).toBeInTheDocument()
     expect(screen.getByLabelText(/prioridad/i)).toBeInTheDocument()
     expect(screen.getByLabelText(/energía mental/i)).toBeInTheDocument()

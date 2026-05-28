@@ -4,6 +4,7 @@ export const createBookSchema = z.object({
   title:            z.string().min(1, 'Obligatorio.').max(500),
   author:           z.string().min(1, 'Obligatorio.').max(300),
   genre:            z.string().min(1, 'Selecciona un género.'),
+  subgenre:         z.string().optional(),
   country:          z.string().min(1, 'Obligatorio.').max(100),
   whyRead:          z.string().max(1000).optional(),
   priority:         z.number().int().min(1).max(5),

@@ -22,6 +22,7 @@ public sealed class UpdateBook
         string  Title,
         string  Author,
         string  Genre,
+        string  Subgenre,
         string  Country,
         string? WhyRead,
         int     Priority,
@@ -38,7 +39,7 @@ public sealed class UpdateBook
 
         await ValidateReferenceValuesAsync(cmd, ct);
 
-        var data = new UpdateBookData(cmd.Title, cmd.Author, cmd.Genre, cmd.Country,
+        var data = new UpdateBookData(cmd.Title, cmd.Author, cmd.Genre, cmd.Subgenre, cmd.Country,
                        cmd.WhyRead, cmd.Priority, cmd.MentalEnergy,
                        cmd.RecommendedMood, cmd.RotationCategory, cmd.Notes);
         await _books.UpdateAsync(cmd.BookId, cmd.UserId, data, ct);
@@ -64,5 +65,10 @@ public sealed class UpdateBook
         if (!rotations.Contains(cmd.RotationCategory))
             throw new ValidationException("rotationCategory",
                 $"'{cmd.RotationCategory}' no es una categoría de rotación válida.");
+
+        var subgenres = (await _refs.GetSubgenresByGenreAsync(cmd.Genre, ct)).ToHashSet();
+        if (subgenres.Any() && !subgenres.Contains(cmd.Subgenre))
+            throw new ValidationException("subgenre",
+                $"'{cmd.Subgenre}' no es un subgénero válido para el género '{cmd.Genre}'.");
     }
 }

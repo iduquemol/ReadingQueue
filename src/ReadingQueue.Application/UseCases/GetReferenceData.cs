@@ -26,6 +26,9 @@ public sealed class GetReferenceData
     public async Task<IEnumerable<string>> GetRotationCategoriesAsync(CancellationToken ct = default)
         => await GetOrCreateAsync("ref:rotations", () => _refs.GetRotationCategoriesAsync(ct));
 
+    public async Task<IEnumerable<string>> GetSubgenresByGenreAsync(string genre, CancellationToken ct = default)
+        => await GetOrCreateAsync($"ref:subgenres:{genre}", () => _refs.GetSubgenresByGenreAsync(genre, ct));
+
     private async Task<IEnumerable<string>> GetOrCreateAsync(
         string key, Func<Task<IEnumerable<string>>> factory)
     {

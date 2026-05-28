@@ -7,6 +7,7 @@ public sealed class Book
     public string    Title            { get; init; } = null!;
     public string    Author           { get; init; } = null!;
     public string    Genre            { get; init; } = null!;
+    public string?   Subgenre         { get; init; }
     public string    Country          { get; init; } = null!;
     public string?   WhyRead          { get; init; }
     public int       Priority         { get; init; }
@@ -22,7 +23,7 @@ public sealed class Book
     public Book() { }
 
     public Book(int id, int userId, string title, string author,
-                string genre, string country, string? whyRead,
+                string genre, string? subgenre, string country, string? whyRead,
                 int priority, string mentalEnergy, string recommendedMood,
                 string rotationCategory, bool isRead, DateTime? readAt,
                 string? notes, DateTime createdAt, DateTime updatedAt)
@@ -32,6 +33,7 @@ public sealed class Book
         Title            = title;
         Author           = author;
         Genre            = genre;
+        Subgenre         = subgenre;
         Country          = country;
         WhyRead          = whyRead;
         Priority         = priority;

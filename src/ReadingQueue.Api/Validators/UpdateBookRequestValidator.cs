@@ -19,6 +19,9 @@ public sealed class UpdateBookRequestValidator : AbstractValidator<UpdateBookReq
             .NotEmpty().WithMessage("El género es obligatorio.")
             .MaximumLength(100);
 
+        RuleFor(x => x.Subgenre)
+            .MaximumLength(200).When(x => x.Subgenre is not null && x.Subgenre != string.Empty);
+
         RuleFor(x => x.Country)
             .NotEmpty().WithMessage("El país es obligatorio.")
             .MaximumLength(100);

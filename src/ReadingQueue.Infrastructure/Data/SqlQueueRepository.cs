@@ -25,6 +25,7 @@ public sealed class SqlQueueRepository : IQueueRepository
             Position = (int)r.Position,
             AddedAt  = (DateTime)r.AddedAt,
             Source   = (string)r.Source,
+            AiReasoning = (string?)r.AiReasoning,
             Book     = new Book
             {
                 Id               = (int)r.BookId2,

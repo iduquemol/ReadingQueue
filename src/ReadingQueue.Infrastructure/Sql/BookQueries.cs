@@ -4,7 +4,7 @@ internal static class BookQueries
 {
     internal const string GetByUserFiltered = """
         SELECT
-            Id, UserId, Title, Author, Genre, Country, WhyRead,
+            Id, UserId, Title, Author, Genre, Subgenre, Country, WhyRead,
             Priority, MentalEnergy, RecommendedMood, RotationCategory,
             IsRead, ReadAt, Notes, CreatedAt, UpdatedAt
         FROM Books
@@ -24,7 +24,7 @@ internal static class BookQueries
 
     internal const string GetById = """
         SELECT
-            Id, UserId, Title, Author, Genre, Country, WhyRead,
+            Id, UserId, Title, Author, Genre, Subgenre, Country, WhyRead,
             Priority, MentalEnergy, RecommendedMood, RotationCategory,
             IsRead, ReadAt, Notes, CreatedAt, UpdatedAt
         FROM Books
@@ -33,11 +33,11 @@ internal static class BookQueries
 
     internal const string Insert = """
         INSERT INTO Books
-            (UserId, Title, Author, Genre, Country, WhyRead,
+            (UserId, Title, Author, Genre, Subgenre, Country, WhyRead,
              Priority, MentalEnergy, RecommendedMood, RotationCategory, Notes)
         OUTPUT INSERTED.Id
         VALUES
-            (@UserId, @Title, @Author, @Genre, @Country, @WhyRead,
+            (@UserId, @Title, @Author, @Genre, @Subgenre, @Country, @WhyRead,
              @Priority, @MentalEnergy, @RecommendedMood, @RotationCategory, @Notes);
         """;
 
@@ -46,6 +46,7 @@ internal static class BookQueries
             Title            = @Title,
             Author           = @Author,
             Genre            = @Genre,
+            Subgenre         = @Subgenre,
             Country          = @Country,
             WhyRead          = @WhyRead,
             Priority         = @Priority,
@@ -92,7 +93,7 @@ internal static class BookQueries
 
     internal const string GetUnreadByUser = """
         SELECT
-            Id, UserId, Title, Author, Genre, Country, WhyRead,
+            Id, UserId, Title, Author, Genre, Subgenre, Country, WhyRead,
             Priority, MentalEnergy, RecommendedMood, RotationCategory,
             IsRead, ReadAt, Notes, CreatedAt, UpdatedAt
         FROM Books
@@ -102,7 +103,7 @@ internal static class BookQueries
 
     internal const string GetReadByUser = """
         SELECT
-            Id, UserId, Title, Author, Genre, Country, WhyRead,
+            Id, UserId, Title, Author, Genre, Subgenre, Country, WhyRead,
             Priority, MentalEnergy, RecommendedMood, RotationCategory,
             IsRead, ReadAt, Notes, CreatedAt, UpdatedAt
         FROM Books

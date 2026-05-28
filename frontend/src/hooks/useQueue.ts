@@ -6,7 +6,7 @@ export const QUEUE_KEY = ['queue'] as const
 export function useQueue() {
   return useQuery({
     queryKey: QUEUE_KEY,
-    queryFn:  () => queueApi.getQueue().then(r => r.data),
+    queryFn: () => queueApi.getQueue().then(r => r.data),
   })
 }
 
@@ -14,7 +14,9 @@ export function useGenerateQueue() {
   const qc = useQueryClient()
   return useMutation({
     mutationFn: () => queueApi.generate().then(r => r.data),
-    onSuccess:  () => qc.invalidateQueries({ queryKey: QUEUE_KEY }),
+    onSuccess: (data) => {
+      qc.setQueryData(QUEUE_KEY, data.queue)
+    },
   })
 }
 

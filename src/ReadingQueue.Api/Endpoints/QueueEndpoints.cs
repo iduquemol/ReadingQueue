@@ -64,6 +64,7 @@ public static class QueueEndpoints
         qi.Position,
         qi.AddedAt,
         qi.Source,
+        qi.AiReasoning,
         BookToResponse(qi.Book));
 
     private static QueueItemWithAIResponse ToAIResponse(
@@ -75,7 +76,7 @@ public static class QueueEndpoints
         BookToResponse(qi.Book));
 
     private static BookResponse BookToResponse(Book b) => new(
-        b.Id, b.UserId, b.Title, b.Author, b.Genre, b.Country, b.WhyRead,
+        b.Id, b.UserId, b.Title, b.Author, b.Genre, b.Subgenre, b.Country, b.WhyRead,
         b.Priority, b.MentalEnergy, b.RecommendedMood, b.RotationCategory,
         b.IsRead, b.ReadAt, b.Notes, b.CreatedAt, b.UpdatedAt);
 }

@@ -59,10 +59,10 @@ public class SqlReferenceDataRepositoryTests : IClassFixture<BookRepositoryFixtu
     }
 
     [Fact]
-    public async Task GetRotationCategoriesAsync_Returns5Categories()
+    public async Task GetRotationCategoriesAsync_Returns10Categories()
     {
         var result = await _sut.GetRotationCategoriesAsync();
 
-        result.Should().HaveCount(5);
+        result.Should().HaveCount(10);
     }
 }

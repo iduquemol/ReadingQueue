@@ -4,6 +4,7 @@ public sealed record UpdateBookRequest(
     string  Title,
     string  Author,
     string  Genre,
+    string  Subgenre,
     string  Country,
     string? WhyRead,
     int     Priority,
