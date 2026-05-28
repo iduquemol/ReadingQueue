@@ -1,5 +1,8 @@
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http.Json;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -105,6 +108,13 @@ builder.Services.AddScoped<ReorderQueue>();
 builder.Services.AddScoped<RemoveFromQueue>();
 builder.Services.AddScoped<GetSpecialLists>();
 builder.Services.AddScoped<GetDashboardStats>();
+
+// ── Serialización JSON con camelCase ──────────────────────────────────────
+builder.Services.Configure<JsonOptions>(opts =>
+{
+    opts.SerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+    opts.SerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+});
 
 builder.Services.AddOpenApi();
 

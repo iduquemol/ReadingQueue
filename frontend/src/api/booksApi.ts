@@ -20,4 +20,5 @@ export const booksApi = {
   getMentalEnergy: () => apiClient.get<string[]>('/books/reference/mental-energy'),
   getMoods:        () => apiClient.get<string[]>('/books/reference/moods'),
   getRotations:    () => apiClient.get<string[]>('/books/reference/rotation-categories'),
+  getSubgenres:    (genre: string) => apiClient.get<string[]>('/books/reference/subgenres', { params: { genre } }),
 }

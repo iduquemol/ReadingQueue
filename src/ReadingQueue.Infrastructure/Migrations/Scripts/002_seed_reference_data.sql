@@ -49,15 +49,25 @@ IF NOT EXISTS (SELECT 1 FROM Moods WHERE Name = 'Sensible / quiero pocas palabra
     INSERT INTO Moods (Name) VALUES ('Sensible / quiero pocas palabras');
 
 -- ============================================================
--- Categorias de rotacion (5 valores)
+-- Categorias de rotacion (10 valores)
 -- ============================================================
-IF NOT EXISTS (SELECT 1 FROM RotationCategories WHERE Name = 'Ensayo / no ficcion')
-    INSERT INTO RotationCategories (Name) VALUES ('Ensayo / no ficcion');
-IF NOT EXISTS (SELECT 1 FROM RotationCategories WHERE Name = 'Libro corto o cuentos')
-    INSERT INTO RotationCategories (Name) VALUES ('Libro corto o cuentos');
-IF NOT EXISTS (SELECT 1 FROM RotationCategories WHERE Name = 'Clasico')
-    INSERT INTO RotationCategories (Name) VALUES ('Clasico');
-IF NOT EXISTS (SELECT 1 FROM RotationCategories WHERE Name = 'Novela grande')
-    INSERT INTO RotationCategories (Name) VALUES ('Novela grande');
-IF NOT EXISTS (SELECT 1 FROM RotationCategories WHERE Name = 'Contemporaneo latinoamericano o raro')
-    INSERT INTO RotationCategories (Name) VALUES ('Contemporaneo latinoamericano o raro');
+IF NOT EXISTS (SELECT 1 FROM RotationCategories WHERE Name = 'Ficción literaria y narrativa general')
+    INSERT INTO RotationCategories (Name) VALUES ('Ficción literaria y narrativa general');
+IF NOT EXISTS (SELECT 1 FROM RotationCategories WHERE Name = 'Ciencia ficción')
+    INSERT INTO RotationCategories (Name) VALUES ('Ciencia ficción');
+IF NOT EXISTS (SELECT 1 FROM RotationCategories WHERE Name = 'Fantasía')
+    INSERT INTO RotationCategories (Name) VALUES ('Fantasía');
+IF NOT EXISTS (SELECT 1 FROM RotationCategories WHERE Name = 'Terror y horror')
+    INSERT INTO RotationCategories (Name) VALUES ('Terror y horror');
+IF NOT EXISTS (SELECT 1 FROM RotationCategories WHERE Name = 'Misterio y crimen')
+    INSERT INTO RotationCategories (Name) VALUES ('Misterio y crimen');
+IF NOT EXISTS (SELECT 1 FROM RotationCategories WHERE Name = 'Romance')
+    INSERT INTO RotationCategories (Name) VALUES ('Romance');
+IF NOT EXISTS (SELECT 1 FROM RotationCategories WHERE Name = 'No ficción')
+    INSERT INTO RotationCategories (Name) VALUES ('No ficción');
+IF NOT EXISTS (SELECT 1 FROM RotationCategories WHERE Name = 'Poesía')
+    INSERT INTO RotationCategories (Name) VALUES ('Poesía');
+IF NOT EXISTS (SELECT 1 FROM RotationCategories WHERE Name = 'Teatro')
+    INSERT INTO RotationCategories (Name) VALUES ('Teatro');
+IF NOT EXISTS (SELECT 1 FROM RotationCategories WHERE Name = 'Cómic y novela gráfica')
+    INSERT INTO RotationCategories (Name) VALUES ('Cómic y novela gráfica');

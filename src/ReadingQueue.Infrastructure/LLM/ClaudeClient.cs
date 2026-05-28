@@ -84,19 +84,31 @@ public sealed class ClaudeClient : ILLMClient
                     }
                 };
 
+                var requestJson = JsonSerializer.Serialize(requestBody);
+                _logger.LogInformation(
+                    "Claude request: Model={Model}, ReadBooks={ReadCount}, UnreadBooks={UnreadCount}, RequestPreview={Preview}",
+                    _options.Model,
+                    readList.Count,
+                    unreadList.Count,
+                    requestJson.Length > 400 ? requestJson[..400] + "..." : requestJson);
+
                 using var request = new HttpRequestMessage(HttpMethod.Post, ApiUrl);
                 request.Headers.Add("x-api-key", _options.ApiKey);
                 request.Headers.Add("anthropic-version", "2023-06-01");
                 request.Content = new StringContent(
-                    JsonSerializer.Serialize(requestBody),
+                    requestJson,
                     Encoding.UTF8,
                     "application/json");
 
                 var response = await _httpClient.SendAsync(request, token);
-                response.EnsureSuccessStatusCode();
+                var responseBody = await response.Content.ReadAsStringAsync(token);
+                _logger.LogInformation(
+                    "Claude response: StatusCode={StatusCode}, BodyPreview={Preview}",
+                    response.StatusCode,
+                    responseBody.Length > 400 ? responseBody[..400] + "..." : responseBody);
 
-                var body = await response.Content.ReadAsStringAsync(token);
-                result = ParseApiResponse(body);
+                response.EnsureSuccessStatusCode();
+                result = ParseApiResponse(responseBody);
             }, ct);
 
             sw.Stop();
@@ -145,6 +157,11 @@ public sealed class ClaudeClient : ILLMClient
                 _logger.LogWarning("Claude no retorno contenido de texto en la respuesta.");
                 return null;
             }
+
+            _logger.LogInformation(
+                "Claude text block extracted for parsing. Length={Length}, Preview={Preview}",
+                text.Length,
+                text.Length > 400 ? text[..400] + "..." : text);
 
             return ParseSuggestions(text);
         }

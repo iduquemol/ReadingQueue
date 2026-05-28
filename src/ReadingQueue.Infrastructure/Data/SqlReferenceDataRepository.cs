@@ -33,4 +33,10 @@ public sealed class SqlReferenceDataRepository : IReferenceDataRepository
         using var conn = _factory.Create();
         return await conn.QueryAsync<string>(ReferenceQueries.GetRotationCategories);
     }
+
+    public async Task<IEnumerable<string>> GetSubgenresByGenreAsync(string genre, CancellationToken ct = default)
+    {
+        using var conn = _factory.Create();
+        return await conn.QueryAsync<string>(ReferenceQueries.GetSubgenresByGenre, new { Genre = genre });
+    }
 }

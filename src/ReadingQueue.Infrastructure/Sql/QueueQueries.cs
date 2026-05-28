@@ -10,6 +10,7 @@ internal static class QueueQueries
             rq.Position,
             rq.AddedAt,
             rq.Source,
+            s.Reasoning       AS AiReasoning,
             b.Id               AS BookId2,
             b.UserId           AS UserId2,
             b.Title,
@@ -28,6 +29,12 @@ internal static class QueueQueries
             b.UpdatedAt        AS BookUpdatedAt
         FROM ReadingQueue rq
         INNER JOIN Books b ON rq.BookId = b.Id
+        LEFT JOIN (
+            SELECT BookId, Reasoning,
+                   ROW_NUMBER() OVER (PARTITION BY BookId ORDER BY GeneratedAt DESC) AS rn
+            FROM AISuggestions
+            WHERE UserId = @UserId
+        ) s ON rq.BookId = s.BookId AND s.rn = 1
         WHERE rq.UserId = @UserId
           AND b.IsRead  = 0
         ORDER BY rq.Position ASC;

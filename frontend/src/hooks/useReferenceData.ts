@@ -34,3 +34,12 @@ export function useRotations() {
     staleTime: DAY,
   })
 }
+
+export function useSubgenres(genre?: string) {
+  return useQuery({
+    queryKey:  ['ref', 'subgenres', genre],
+    queryFn:   () => booksApi.getSubgenres(genre ?? '').then(r => r.data),
+    enabled:   Boolean(genre),
+    staleTime: DAY,
+  })
+}

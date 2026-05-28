@@ -98,11 +98,11 @@ public class MigrationRunnerTests : IClassFixture<MigrationRunnerFixture>
     }
 
     [Fact]
-    public void Run_SeedsRotationCategories_FiveValues()
+    public void Run_SeedsRotationCategories_TenValues()
     {
         var count = QueryScalar<int>("SELECT COUNT(*) FROM RotationCategories");
 
-        count.Should().Be(5);
+        count.Should().Be(10);
     }
 
     [Fact]

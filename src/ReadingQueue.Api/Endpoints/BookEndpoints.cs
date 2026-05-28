@@ -28,6 +28,7 @@ public static class BookEndpoints
         reference.MapGet("/mental-energy",       GetMentalEnergy);
         reference.MapGet("/moods",               GetMoods);
         reference.MapGet("/rotation-categories", GetRotationCategories);
+        reference.MapGet("/subgenres", GetSubgenresByGenre);
     }
 
     private static async Task<IResult> GetAll(
@@ -65,8 +66,8 @@ public static class BookEndpoints
             });
 
         var cmd  = new CreateBook.Command(ctx.GetUserId(), req.Title, req.Author,
-            req.Genre, req.Country, req.WhyRead, req.Priority, req.MentalEnergy,
-            req.RecommendedMood, req.RotationCategory, req.Notes);
+            req.Genre, req.Subgenre, req.Country, req.WhyRead, req.Priority,
+            req.MentalEnergy, req.RecommendedMood, req.RotationCategory, req.Notes);
         var book = await useCase.ExecuteAsync(cmd);
         return Results.Created($"/api/books/{book.Id}", ToResponse(book));
     }
@@ -88,8 +89,8 @@ public static class BookEndpoints
             });
 
         var cmd  = new UpdateBook.Command(id, ctx.GetUserId(), req.Title, req.Author,
-            req.Genre, req.Country, req.WhyRead, req.Priority, req.MentalEnergy,
-            req.RecommendedMood, req.RotationCategory, req.Notes);
+            req.Genre, req.Subgenre, req.Country, req.WhyRead, req.Priority,
+            req.MentalEnergy, req.RecommendedMood, req.RotationCategory, req.Notes);
         var book = await useCase.ExecuteAsync(cmd);
         return Results.Ok(ToResponse(book));
     }
@@ -131,8 +132,16 @@ public static class BookEndpoints
     private static async Task<IResult> GetRotationCategories(GetReferenceData useCase)
         => Results.Ok(await useCase.GetRotationCategoriesAsync());
 
+    private static async Task<IResult> GetSubgenresByGenre(string? genre, GetReferenceData useCase)
+    {
+        if (string.IsNullOrWhiteSpace(genre))
+            return Results.BadRequest(new { error = "genre is required" });
+
+        return Results.Ok(await useCase.GetSubgenresByGenreAsync(genre));
+    }
+
     private static BookResponse ToResponse(Book b) => new(
-        b.Id, b.UserId, b.Title, b.Author, b.Genre, b.Country, b.WhyRead,
+        b.Id, b.UserId, b.Title, b.Author, b.Genre, b.Subgenre, b.Country, b.WhyRead,
         b.Priority, b.MentalEnergy, b.RecommendedMood, b.RotationCategory,
         b.IsRead, b.ReadAt, b.Notes, b.CreatedAt, b.UpdatedAt);
 }

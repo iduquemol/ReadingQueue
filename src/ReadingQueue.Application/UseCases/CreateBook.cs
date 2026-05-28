@@ -21,6 +21,7 @@ public sealed class CreateBook
         string  Title,
         string  Author,
         string  Genre,
+        string  Subgenre,
         string  Country,
         string? WhyRead,
         int     Priority,
@@ -34,7 +35,7 @@ public sealed class CreateBook
     {
         await ValidateReferenceValuesAsync(cmd, ct);
 
-        var data  = new CreateBookData(cmd.Title, cmd.Author, cmd.Genre, cmd.Country,
+        var data  = new CreateBookData(cmd.Title, cmd.Author, cmd.Genre, cmd.Subgenre, cmd.Country,
                         cmd.WhyRead, cmd.Priority, cmd.MentalEnergy,
                         cmd.RecommendedMood, cmd.RotationCategory, cmd.Notes);
         var newId = await _books.CreateAsync(cmd.UserId, data, ct);
@@ -60,5 +61,10 @@ public sealed class CreateBook
         if (!rotations.Contains(cmd.RotationCategory))
             throw new ValidationException("rotationCategory",
                 $"'{cmd.RotationCategory}' no es una categoría de rotación válida.");
+
+        var subgenres = (await _refs.GetSubgenresByGenreAsync(cmd.Genre, ct)).ToHashSet();
+        if (subgenres.Any() && !subgenres.Contains(cmd.Subgenre))
+            throw new ValidationException("subgenre",
+                $"'{cmd.Subgenre}' no es un subgénero válido para el género '{cmd.Genre}'.");
     }
 }

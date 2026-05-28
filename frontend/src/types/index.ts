@@ -10,6 +10,7 @@ export interface Book {
   title:            string
   author:           string
   genre:            string
+  subgenre:         string | null
   country:          string
   whyRead:          string | null
   priority:         number
@@ -104,6 +105,7 @@ export interface CreateBookPayload {
   title:            string
   author:           string
   genre:            string
+  subgenre?:        string
   country:          string
   whyRead?:         string
   priority:         number

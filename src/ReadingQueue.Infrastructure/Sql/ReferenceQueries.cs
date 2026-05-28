@@ -17,4 +17,8 @@ internal static class ReferenceQueries
     internal const string GetRotationCategories = """
         SELECT Name FROM RotationCategories ORDER BY Name;
         """;
+
+    internal const string GetSubgenresByGenre = """
+        SELECT Name FROM Subgenres WHERE Genre = @Genre ORDER BY Name;
+        """;
 }
