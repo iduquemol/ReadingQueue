@@ -27,7 +27,7 @@ public class DeleteBookTests
     }
 
     private static Book MakeBook()
-        => new(5, 42, "Titulo", "Autor", "Clasico", "Colombia", null,
+        => new(5, 42, "Titulo", "Autor", "Clasico", null, "Colombia", null,
                3, "Baja - cualquier momento", "Analitico / quiero aprender algo",
                "Clasico", false, null, null, DateTime.UtcNow, DateTime.UtcNow);
 

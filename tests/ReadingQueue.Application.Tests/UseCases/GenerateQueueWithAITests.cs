@@ -36,7 +36,7 @@ public class GenerateQueueWithAITests
     // ── helpers ───────────────────────────────────────────────────────────────
 
     private static Book MakeBook(int id, int priority = 3, string cat = "Novela grande")
-        => new(id, 1, $"Libro {id}", "Autor", "Clasico", "Colombia", null,
+        => new(id, 1, $"Libro {id}", "Autor", "Clasico", null, "Colombia", null,
                priority, "Baja - cualquier momento", "Solemne / quiero leer algo grande",
                cat, false, null, null, DateTime.UtcNow, DateTime.UtcNow);
 

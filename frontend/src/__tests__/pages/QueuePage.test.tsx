@@ -15,7 +15,7 @@ import type { QueueItem, Book } from '@/types'
 const BOOK: Book = {
   id: 1, userId: 1,
   title: 'Cien años de soledad', author: 'García Márquez',
-  genre: 'Clasico', country: 'Colombia',
+  genre: 'Clasico', subgenre: null, country: 'Colombia',
   whyRead: null, priority: 3,
   mentalEnergy: 'Media', recommendedMood: 'Aventurero',
   rotationCategory: 'Debe', isRead: false,

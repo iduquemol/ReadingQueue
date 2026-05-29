@@ -12,6 +12,7 @@ public class CreateBookRequestValidatorTests
         Title:            "Cien años de soledad",
         Author:           "Gabriel Garcia Marquez",
         Genre:            "Clasico",
+        Subgenre:         "",
         Country:          "Colombia",
         WhyRead:          null,
         Priority:         3,

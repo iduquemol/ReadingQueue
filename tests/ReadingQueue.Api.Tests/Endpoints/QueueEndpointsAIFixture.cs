@@ -104,6 +104,7 @@ public class QueueEndpointsAIFixture : IAsyncLifetime
         Title:            $"Libro {Guid.NewGuid():N}",
         Author:           "Autor Test",
         Genre:            "Clasico",
+        Subgenre:         "",
         Country:          "Colombia",
         WhyRead:          null,
         Priority:         priority,

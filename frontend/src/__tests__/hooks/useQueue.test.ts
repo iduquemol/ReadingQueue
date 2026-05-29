@@ -18,6 +18,7 @@ const mockQueueItem = (pos = 1): QueueItem => ({
     title:            `Libro ${pos}`,
     author:           'Autor',
     genre:            'Clasico',
+    subgenre:         null,
     country:          'Colombia',
     whyRead:          null,
     priority:         3,

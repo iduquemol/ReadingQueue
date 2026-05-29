@@ -16,7 +16,7 @@ public class GetQueueTests
     private static QueueItem MakeItem(int id)
         => new(id, 1, id, id,
                DateTime.UtcNow, "Filter",
-               new Book(id, 1, $"Libro {id}", "Autor", "Clasico", "Colombia", null,
+               new Book(id, 1, $"Libro {id}", "Autor", "Clasico", null, "Colombia", null,
                         3, "Baja - cualquier momento", "Solemne / quiero leer algo grande",
                         "Clasico", false, null, null, DateTime.UtcNow, DateTime.UtcNow));
 

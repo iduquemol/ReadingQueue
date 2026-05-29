@@ -23,7 +23,7 @@ public class GetSpecialListsTests
         int daysOld = 0)
     {
         var createdAt = DateTime.UtcNow.AddDays(-daysOld);
-        return new Book(id, 1, $"Libro {id}", "Autor", genre, "Colombia", null,
+        return new Book(id, 1, $"Libro {id}", "Autor", genre, null, "Colombia", null,
                         priority, mentalEnergy, "Solemne / quiero leer algo grande",
                         "Clasico", false, null, null, createdAt, createdAt);
     }

@@ -54,7 +54,6 @@ public sealed class GenerateQueueWithAI
             : new Dictionary<int, string>();
 
         var scored   = _scoring.Score(unread, aiScores);
-        var source   = aiContributed ? "AI" : "Filter";
         var accepted = scored.Select(sb => sb.Book.Id).ToList();
 
         using var conn = _factory.Create();
@@ -62,7 +61,11 @@ public sealed class GenerateQueueWithAI
         using var tx = conn.BeginTransaction();
         try
         {
-            var items = scored.Select((sb, idx) => (sb.Book.Id, idx + 1, source));
+            var items = scored.Select((sb, idx) =>
+            {
+                var source = aiContributed && reasoningMap.ContainsKey(sb.Book.Id) ? "AI" : "Filter";
+                return (sb.Book.Id, idx + 1, source);
+            });
             await _queue.ReplaceQueueAsync(cmd.UserId, items, tx, ct);
             if (aiContributed)
                 await _suggRepo.SaveSuggestionsAsync(cmd.UserId, suggestions!, accepted, ct);

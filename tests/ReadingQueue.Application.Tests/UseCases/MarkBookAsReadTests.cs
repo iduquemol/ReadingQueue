@@ -27,7 +27,7 @@ public class MarkBookAsReadTests
     }
 
     private Book MakeBook(bool isRead = false)
-        => new(7, 42, "Titulo", "Autor", "Clasico", "Colombia", null,
+        => new(7, 42, "Titulo", "Autor", "Clasico", null, "Colombia", null,
                3, "Baja - cualquier momento", "Analitico / quiero aprender algo",
                "Clasico", isRead, isRead ? DateTime.UtcNow : null, null,
                DateTime.UtcNow, DateTime.UtcNow);

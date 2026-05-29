@@ -23,6 +23,7 @@ public class SqlBookRepositoryTests : IClassFixture<BookRepositoryFixture>
             Title:            $"Titulo {Guid.NewGuid():N}",
             Author:           "Autor Test",
             Genre:            genre,
+            Subgenre:         "",
             Country:          "Colombia",
             WhyRead:          null,
             Priority:         priority,
@@ -179,7 +180,7 @@ public class SqlBookRepositoryTests : IClassFixture<BookRepositoryFixture>
 
         await Task.Delay(100);
         var updated = new UpdateBookData("Nuevo Titulo", "Nuevo Autor", "Cuentos",
-            "Mexico", "Porque quiero", 4, "Alta - concentracion",
+            "", "Mexico", "Porque quiero", 4, "Alta - concentracion",
             "Curioso / quiero algo fresco", "Libro corto o cuentos", "Notas nuevas");
         await _sut.UpdateAsync(id, _fixture.UserId, updated);
 

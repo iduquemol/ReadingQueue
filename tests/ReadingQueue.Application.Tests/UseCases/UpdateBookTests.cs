@@ -29,13 +29,13 @@ public class UpdateBookTests
     }
 
     private static Book MakeBook(int id = 5)
-        => new(id, 42, "Titulo", "Autor", "Clasico", "Colombia", null,
+        => new(id, 42, "Titulo", "Autor", "Clasico", null, "Colombia", null,
                3, "Baja - cualquier momento", "Analitico / quiero aprender algo",
                "Clasico", false, null, null, DateTime.UtcNow, DateTime.UtcNow);
 
     private UpdateBook.Command ValidCommand() => new(
         BookId: 5, UserId: 42, Title: "Nuevo Titulo", Author: "Autor",
-        Genre: "Clasico", Country: "Colombia", WhyRead: null,
+        Genre: "Clasico", Subgenre: "", Country: "Colombia", WhyRead: null,
         Priority: 4, MentalEnergy: "Baja - cualquier momento",
         RecommendedMood: "Analitico / quiero aprender algo",
         RotationCategory: "Clasico", Notes: null);

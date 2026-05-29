@@ -15,7 +15,7 @@ public class GetBookByIdTests
     public GetBookByIdTests() => _sut = new GetBookById(_books.Object);
 
     private static Book MakeBook()
-        => new(7, 42, "Titulo", "Autor", "Clasico", "Colombia", null,
+        => new(7, 42, "Titulo", "Autor", "Clasico", null, "Colombia", null,
                3, "Baja - cualquier momento", "Analitico / quiero aprender algo",
                "Clasico", false, null, null,
                DateTime.UtcNow, DateTime.UtcNow);

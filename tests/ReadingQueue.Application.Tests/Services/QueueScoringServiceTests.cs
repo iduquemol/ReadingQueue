@@ -16,7 +16,7 @@ public class QueueScoringServiceTests
         string mentalEnergy = "Media - momento especifico")
     {
         var createdAt = DateTime.UtcNow.AddDays(-daysOld);
-        return new Book(id, 1, $"Libro {id}", "Autor", "Clasico", "Colombia", null,
+        return new Book(id, 1, $"Libro {id}", "Autor", "Clasico", null, "Colombia", null,
                         priority, mentalEnergy, "Solemne / quiero leer algo grande",
                         rotationCategory, false, null, null,
                         createdAt, createdAt);

@@ -28,7 +28,7 @@ public class ReorderQueueTests
 
     private static QueueItem MakeItem(int bookId, int position)
         => new(bookId, 1, bookId, position, DateTime.UtcNow, "Filter",
-               new Book(bookId, 1, $"Libro {bookId}", "Autor", "Clasico", "Colombia", null,
+               new Book(bookId, 1, $"Libro {bookId}", "Autor", "Clasico", null, "Colombia", null,
                         3, "Baja - cualquier momento", "Solemne / quiero leer algo grande",
                         "Clasico", false, null, null, DateTime.UtcNow, DateTime.UtcNow));
 

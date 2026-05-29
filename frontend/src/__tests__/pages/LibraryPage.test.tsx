@@ -7,7 +7,7 @@ vi.mock('@/hooks/useBooks')
 vi.mock('@/hooks/useReferenceData')
 
 import { useBooks, useCreateBook, useUpdateBook, useDeleteBook, useMarkAsRead, useMarkAsUnread } from '@/hooks/useBooks'
-import { useGenres, useMentalEnergy, useMoods, useRotations } from '@/hooks/useReferenceData'
+import { useGenres, useMentalEnergy, useMoods, useRotations, useSubgenres } from '@/hooks/useReferenceData'
 import { LibraryPage }  from '@/pages/LibraryPage'
 import { useUIStore }   from '@/stores/useUIStore'
 import type { Book }    from '@/types'
@@ -15,7 +15,7 @@ import type { Book }    from '@/types'
 const BOOK: Book = {
   id: 1, userId: 1,
   title: 'Cien años de soledad', author: 'García Márquez',
-  genre: 'Clasico', country: 'Colombia',
+  genre: 'Clasico', subgenre: null, country: 'Colombia',
   whyRead: null, priority: 3,
   mentalEnergy: 'Media', recommendedMood: 'Aventurero',
   rotationCategory: 'Debe', isRead: false,
@@ -39,6 +39,7 @@ function setupMocks({
   vi.mocked(useMentalEnergy).mockReturnValue({ data: ['Alta', 'Media', 'Baja'] } as never)
   vi.mocked(useMoods).mockReturnValue({ data: ['Aventurero', 'Reflexivo'] } as never)
   vi.mocked(useRotations).mockReturnValue({ data: ['Debe', 'Quiere', 'Puede'] } as never)
+  vi.mocked(useSubgenres).mockReturnValue({ data: [], isFetching: false } as never)
 }
 
 beforeEach(() => {
@@ -102,7 +103,7 @@ describe('LibraryPage — modal crear libro (CA-09 / CA-10)', () => {
     const dialog = await screen.findByRole('dialog')
     await user.type(within(dialog).getByLabelText(/título/i), 'El Aleph')
     await user.type(within(dialog).getByLabelText(/autor/i), 'Borges')
-    await user.selectOptions(within(dialog).getByLabelText(/género/i), 'Clasico')
+    await user.selectOptions(within(dialog).getByLabelText(/^género \*/i), 'Clasico')
     await user.type(within(dialog).getByLabelText(/país/i), 'Argentina')
     await user.selectOptions(within(dialog).getByLabelText(/energía mental/i), 'Alta')
     await user.selectOptions(within(dialog).getByLabelText(/ánimo/i), 'Aventurero')
@@ -127,7 +128,7 @@ describe('LibraryPage — modal crear libro (CA-09 / CA-10)', () => {
     const dialog = await screen.findByRole('dialog')
     await user.type(within(dialog).getByLabelText(/título/i), 'El Aleph')
     await user.type(within(dialog).getByLabelText(/autor/i), 'Borges')
-    await user.selectOptions(within(dialog).getByLabelText(/género/i), 'Clasico')
+    await user.selectOptions(within(dialog).getByLabelText(/^género \*/i), 'Clasico')
     await user.type(within(dialog).getByLabelText(/país/i), 'Argentina')
     await user.selectOptions(within(dialog).getByLabelText(/energía mental/i), 'Alta')
     await user.selectOptions(within(dialog).getByLabelText(/ánimo/i), 'Aventurero')

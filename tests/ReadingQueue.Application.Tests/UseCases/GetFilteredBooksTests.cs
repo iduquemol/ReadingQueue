@@ -15,7 +15,7 @@ public class GetFilteredBooksTests
     public GetFilteredBooksTests() => _sut = new GetFilteredBooks(_books.Object);
 
     private static Book MakeBook(int id = 1)
-        => new(id, 42, "Titulo", "Autor", "Clasico", "Colombia", null,
+        => new(id, 42, "Titulo", "Autor", "Clasico", null, "Colombia", null,
                3, "Baja - cualquier momento", "Analitico / quiero aprender algo",
                "Clasico", false, null, null,
                DateTime.UtcNow, DateTime.UtcNow);

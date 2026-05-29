@@ -174,11 +174,24 @@ public sealed class ClaudeClient : ILLMClient
         }
     }
 
+    private static string StripMarkdownFence(string raw)
+    {
+        var text = raw.Trim();
+        if (text.StartsWith("```"))
+        {
+            var firstNewline = text.IndexOf('\n');
+            if (firstNewline >= 0) text = text[(firstNewline + 1)..];
+            if (text.EndsWith("```")) text = text[..^3];
+            text = text.Trim();
+        }
+        return text;
+    }
+
     private IEnumerable<BookSuggestion>? ParseSuggestions(string raw)
     {
         try
         {
-            var doc = JsonDocument.Parse(raw);
+            var doc = JsonDocument.Parse(StripMarkdownFence(raw));
 
             if (!doc.RootElement.TryGetProperty("suggestions", out var arr))
             {
