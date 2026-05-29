@@ -100,6 +100,7 @@ public class BookEndpointsFixture : IAsyncLifetime
         Title:            $"Libro {Guid.NewGuid():N}",
         Author:           "Autor Test",
         Genre:            genre,
+        Subgenre:         "",
         Country:          "Colombia",
         WhyRead:          null,
         Priority:         priority,

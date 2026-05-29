@@ -15,7 +15,7 @@ public class MarkBookAsUnreadTests
     public MarkBookAsUnreadTests() => _sut = new MarkBookAsUnread(_books.Object);
 
     private static Book MakeBook(bool isRead = true)
-        => new(7, 42, "Titulo", "Autor", "Clasico", "Colombia", null,
+        => new(7, 42, "Titulo", "Autor", "Clasico", null, "Colombia", null,
                3, "Baja - cualquier momento", "Analitico / quiero aprender algo",
                "Clasico", isRead, isRead ? DateTime.UtcNow : null, null,
                DateTime.UtcNow, DateTime.UtcNow);

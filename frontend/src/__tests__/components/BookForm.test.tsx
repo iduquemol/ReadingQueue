@@ -4,6 +4,14 @@ import userEvent from '@testing-library/user-event'
 import { BookForm } from '@/components/library/BookForm'
 import { createWrapper } from '@/__tests__/helpers/queryWrapper'
 
+vi.mock('@/hooks/useReferenceData', () => ({
+  useSubgenres: () => ({ data: [], isFetching: false }),
+}))
+
+vi.mock('@/api/bookLookupApi', () => ({
+  lookupBook: vi.fn().mockResolvedValue([]),
+}))
+
 const GENRES    = ['Clasico', 'Novela contemporánea']
 const ENERGIES  = ['Alta', 'Media', 'Baja']
 const MOODS     = ['Aventurero', 'Reflexivo']
@@ -28,8 +36,8 @@ describe('BookForm — estructura', () => {
     renderForm()
     expect(screen.getByLabelText(/título/i)).toBeInTheDocument()
     expect(screen.getByLabelText(/autor/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/género/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/subgénero/i)).toBeInTheDocument()
+    expect(screen.getByLabelText(/^género \*/i)).toBeInTheDocument()
+    expect(screen.getByLabelText(/^subgénero/i)).toBeInTheDocument()
     expect(screen.getByLabelText(/país/i)).toBeInTheDocument()
     expect(screen.getByLabelText(/prioridad/i)).toBeInTheDocument()
     expect(screen.getByLabelText(/energía mental/i)).toBeInTheDocument()
@@ -62,7 +70,7 @@ describe('BookForm — submit', () => {
 
     await user.type(screen.getByLabelText(/título/i), 'El Aleph')
     await user.type(screen.getByLabelText(/autor/i), 'Borges')
-    await user.selectOptions(screen.getByLabelText(/género/i), 'Clasico')
+    await user.selectOptions(screen.getByLabelText(/^género \*/i), 'Clasico')
     await user.type(screen.getByLabelText(/país/i), 'Argentina')
     await user.selectOptions(screen.getByLabelText(/energía mental/i), 'Alta')
     await user.selectOptions(screen.getByLabelText(/ánimo/i), 'Aventurero')

@@ -15,6 +15,7 @@ const makeItem = (position: number, aiReasoning: string | null = null): QueueIte
     title: `Libro ${position}`,
     author: `Autor ${position}`,
     genre: 'Clasico',
+    subgenre: null,
     country: 'Colombia',
     whyRead: null,
     priority: 3,

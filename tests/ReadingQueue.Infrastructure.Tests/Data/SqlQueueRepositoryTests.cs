@@ -38,6 +38,7 @@ public class SqlQueueRepositoryTests : IClassFixture<BookRepositoryFixture>
             Title:            $"Libro {Guid.NewGuid():N}",
             Author:           "Autor Test",
             Genre:            genre,
+            Subgenre:         "",
             Country:          "Colombia",
             WhyRead:          null,
             Priority:         priority,

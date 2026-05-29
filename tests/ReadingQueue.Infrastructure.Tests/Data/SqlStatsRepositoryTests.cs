@@ -40,6 +40,7 @@ public class SqlStatsRepositoryTests : IClassFixture<BookRepositoryFixture>
             Title:            $"Libro {Guid.NewGuid():N}",
             Author:           "Autor Test",
             Genre:            genre,
+            Subgenre:         "",
             Country:          country,
             WhyRead:          null,
             Priority:         priority,

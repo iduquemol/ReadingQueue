@@ -133,8 +133,9 @@ export function LibraryPage() {
             key={bookModalBookId ?? 'create'}
             defaultValues={editingBook ? {
               ...editingBook,
-              whyRead: editingBook.whyRead ?? undefined,
-              notes:   editingBook.notes   ?? undefined,
+              subgenre: editingBook.subgenre ?? undefined,
+              whyRead:  editingBook.whyRead  ?? undefined,
+              notes:    editingBook.notes    ?? undefined,
             } : undefined}
             onSubmit={bookModalBookId ? handleUpdate : handleCreate}
             isPending={createBook.isPending || updateBook.isPending}

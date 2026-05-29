@@ -7,7 +7,7 @@ public class QueueItemTests
 {
     private static Book MakeBook()
         => new(1, 42, "Cien años de soledad", "Gabriel Garcia Marquez",
-               "Novela latinoamericana", "Colombia", null,
+               "Novela latinoamericana", null, "Colombia", null,
                5, "Baja - cualquier momento", "Solemne / quiero leer algo grande",
                "Novela grande", false, null, null,
                new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc),

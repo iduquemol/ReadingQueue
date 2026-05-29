@@ -54,6 +54,7 @@ public class BookEndpointsIsolationTests : IClassFixture<BookEndpointsFixture>
             Title:            "Hack",
             Author:           "Hacker",
             Genre:            "Clasico",
+            Subgenre:         "",
             Country:          "Colombia",
             WhyRead:          null,
             Priority:         3,

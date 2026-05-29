@@ -8,7 +8,7 @@ public class BookEntityTests
     private static Book MakeBook(bool isRead = false, DateTime? readAt = null,
         string? whyRead = null, string? notes = null)
         => new(1, 42, "Cien años de soledad", "Gabriel Garcia Marquez",
-               "Novela latinoamericana", "Colombia", whyRead,
+               "Novela latinoamericana", null, "Colombia", whyRead,
                5, "Baja - cualquier momento", "Solemne / quiero leer algo grande",
                "Novela grande", isRead, readAt, notes,
                new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc),
@@ -21,7 +21,7 @@ public class BookEntityTests
         var updatedAt = new DateTime(2026, 1, 2, 0, 0, 0, DateTimeKind.Utc);
         var readAt    = new DateTime(2026, 3, 15, 0, 0, 0, DateTimeKind.Utc);
 
-        var book = new Book(7, 99, "Título", "Autor", "Clasico", "España",
+        var book = new Book(7, 99, "Título", "Autor", "Clasico", "Subgénero", "España",
             "Porque sí", 4, "Alta - concentracion", "Analitico / quiero aprender algo",
             "Clasico", true, readAt, "Muy bueno", createdAt, updatedAt);
 
@@ -30,6 +30,7 @@ public class BookEntityTests
         book.Title.Should().Be("Título");
         book.Author.Should().Be("Autor");
         book.Genre.Should().Be("Clasico");
+        book.Subgenre.Should().Be("Subgénero");
         book.Country.Should().Be("España");
         book.WhyRead.Should().Be("Porque sí");
         book.Priority.Should().Be(4);

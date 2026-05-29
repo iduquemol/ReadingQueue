@@ -119,12 +119,15 @@ builder.Services.Configure<JsonOptions>(opts =>
 builder.Services.AddOpenApi();
 
 // ── CORS ─────────────────────────────────────────────────────────────────────
-var allowedOrigins = builder.Configuration
-    .GetSection("Cors:AllowedOrigins")
-    .GetChildren()
-    .Select(c => c.Value!)
-    .Where(v => !string.IsNullOrEmpty(v))
-    .ToArray();
+// Soporta string CSV ("a.com,b.com") y variables indexadas (Cors__AllowedOrigins__0)
+var originsRaw = builder.Configuration["Cors:AllowedOrigins"];
+var allowedOrigins = !string.IsNullOrEmpty(originsRaw)
+    ? originsRaw.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+    : builder.Configuration.GetSection("Cors:AllowedOrigins")
+             .GetChildren()
+             .Select(c => c.Value!)
+             .Where(v => !string.IsNullOrEmpty(v))
+             .ToArray();
 
 builder.Services.AddCors(opts => opts.AddDefaultPolicy(policy =>
     policy.WithOrigins(allowedOrigins)

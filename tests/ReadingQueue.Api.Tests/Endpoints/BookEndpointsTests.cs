@@ -195,6 +195,7 @@ public class BookEndpointsTests : IClassFixture<BookEndpointsFixture>
             Title:            "Titulo Actualizado",
             Author:           book.Author,
             Genre:            book.Genre,
+            Subgenre:         "",
             Country:          book.Country,
             WhyRead:          null,
             Priority:         5,

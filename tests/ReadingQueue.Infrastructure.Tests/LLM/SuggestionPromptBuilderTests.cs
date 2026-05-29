@@ -10,7 +10,7 @@ public class SuggestionPromptBuilderTests
     private static Book MakeBook(int id = 1, int priority = 3,
         DateTime? readAt = null, bool isRead = false)
         => new(id, 1, $"Libro {id}", $"Autor {id}",
-               "Novela latinoamericana", "Colombia", null,
+               "Novela latinoamericana", null, "Colombia", null,
                priority, "Baja - cualquier momento",
                "Solemne / quiero leer algo grande", "Novela grande",
                isRead, readAt,
@@ -105,7 +105,7 @@ public class SuggestionPromptBuilderTests
     {
         var now = DateTime.UtcNow;
         var readBooks = Enumerable.Range(1, 35)
-            .Select(i => new Book(i, 1, $"Libro {i}", "Autor", "Genero", "Pais",
+            .Select(i => new Book(i, 1, $"Libro {i}", "Autor", "Genero", null, "Pais",
                 null, 3, "Baja - cualquier momento", "Mood", "Clasico",
                 true, now.AddDays(-i), null,
                 new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc),

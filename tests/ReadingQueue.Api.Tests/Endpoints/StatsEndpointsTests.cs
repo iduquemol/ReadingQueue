@@ -72,6 +72,7 @@ public class StatsEndpointsTests : IClassFixture<QueueEndpointsFixture>
                 Title:            $"Libro {Guid.NewGuid():N}",
                 Author:           "Autor",
                 Genre:            "Clasico",
+                Subgenre:         "",
                 Country:          country,
                 WhyRead:          null,
                 Priority:         3,

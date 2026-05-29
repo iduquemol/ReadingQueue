@@ -29,13 +29,13 @@ public class CreateBookTests
     }
 
     private static Book MadeBook(int id = 1)
-        => new(id, 42, "Titulo", "Autor", "Clasico", "Colombia", null,
+        => new(id, 42, "Titulo", "Autor", "Clasico", null, "Colombia", null,
                3, "Baja - cualquier momento", "Analitico / quiero aprender algo",
                "Clasico", false, null, null, DateTime.UtcNow, DateTime.UtcNow);
 
     private CreateBook.Command ValidCommand() => new(
         UserId: 42, Title: "Titulo", Author: "Autor",
-        Genre: "Clasico", Country: "Colombia", WhyRead: null,
+        Genre: "Clasico", Subgenre: "", Country: "Colombia", WhyRead: null,
         Priority: 3, MentalEnergy: "Baja - cualquier momento",
         RecommendedMood: "Analitico / quiero aprender algo",
         RotationCategory: "Clasico", Notes: null);

@@ -13,6 +13,7 @@ const mockBook = (overrides?: Partial<Book>): Book => ({
   title:            'Cien años de soledad',
   author:           'García Márquez',
   genre:            'Clasico',
+  subgenre:         null,
   country:          'Colombia',
   whyRead:          null,
   priority:         3,

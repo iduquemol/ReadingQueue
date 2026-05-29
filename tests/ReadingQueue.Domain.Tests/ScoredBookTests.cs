@@ -7,7 +7,7 @@ namespace ReadingQueue.Domain.Tests;
 public class ScoredBookTests
 {
     private static Book MakeBook()
-        => new(1, 42, "Título", "Autor", "Clasico", "España", null,
+        => new(1, 42, "Título", "Autor", "Clasico", null, "España", null,
                3, "Alta - concentracion", "Analitico / quiero aprender algo",
                "Clasico", false, null, null,
                new DateTime(2026, 1, 1, 0, 0, 0, DateTimeKind.Utc),
